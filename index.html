@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WKLOCK-TOOL - Herramienta de Desbloqueo Profesional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="https://i.postimg.cc/yx5gbVs1/Lucid-Realism-A-sleek-modern-logo-for-WLOCK-a-phone-unlocking-2.jpg" alt="WKLOCK-TOOL Logo" class="logo">
+                    <span class="logo-text">WKLOCK-TOOL</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link">Inicio</a>
+                    <a href="#features" class="nav-link">Características</a>
+                    <a href="#models" class="nav-link">Modelos Soportados</a>
+                    <a href="#status" class="nav-link">Estado</a>
+                    <a href="#contact" class="nav-link">Contacto</a>
+                    <div class="language-selector">
+                        <button class="language-btn" onclick="toggleLanguageMenu()">
+                            <i class="fas fa-globe"></i> <span id="currentLanguage">Español</span>
+                        </button>
+                        <div class="language-menu" id="languageMenu">
+                            <div class="language-option" onclick="changeLanguage('es')">
+                                <span>Español</span>
+                            </div>
+                            <div class="language-option" onclick="changeLanguage('en')">
+                                <span>English</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="login-btn" onclick="openLoginModal()">
+                        <i class="fas fa-user"></i> Iniciar Sesión
+                    </button>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">WKLOCK-TOOL</h1>
+                <p class="hero-subtitle">La herramienta más avanzada para desbloqueo de dispositivos móviles</p>
+                <p class="hero-description">Solución profesional y confiable para técnicos especializados</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="showDownloadModal()">
+                        <i class="fas fa-download"></i> Descargar Herramienta
+                    </button>
+                    <button class="btn-secondary" onclick="openRegisterModal()">
+                        <i class="fas fa-users"></i> Unirse al Soporte
+                    </button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://i.postimg.cc/fyhFtW5V/pantalla.jpg" alt="WKLOCK-TOOL en funcionamiento" class="tool-screenshot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Características Principales</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-unlock-alt"></i>
+                    </div>
+                    <h3>Desbloqueo Avanzado</h3>
+                    <p>Soporte exclusivo para dispositivos móviles marca Motorola</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguro y Confiable</h3>
+                    <p>Procesos seguros que protegen la integridad de los dispositivos</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Rápido y Eficiente</h3>
+                    <p>Procesos optimizados para resultados en tiempo récord</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Asistencia técnica especializada disponible todo el tiempo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section id="models" class="models-section">
+        <div class="container">
+            <h2 class="section-title">Modelos Soportados</h2>
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="modelSearch" placeholder="Search model..." onkeyup="filterModels()">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            <div class="models-grid" id="modelsGrid">
+                <!-- Models will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Server Status Section -->
+    <section id="status" class="status-section">
+        <div class="container">
+            <h2 class="section-title">Estado Server</h2>
+            <div class="status-cards">
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-server"></i>
+                        <h3>Sprint Unlock</h3>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-light offline" id="sprintStatus"></div>
+                        <span class="status-text" id="sprintStatusText">Offline</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-microchip"></i>
+                        <h3>MTK/SPD Unlock</h3>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-light online" id="mtkStatus"></div>
+                        <span class="status-text" id="mtkStatusText">Online</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Qualcomm Tool Server</h3>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-light offline" id="qualcommStatus"></div>
+                        <span class="status-text" id="qualcommStatusText">Offline</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-header">
+                        <i class="fas fa-flag-usa"></i>
+                        <h3>USA Carriers</h3>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-light offline" id="usaStatus"></div>
+                        <span class="status-text" id="usaStatusText">Offline</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-controls" id="adminControls" style="display: none;">
+                <h3>Control de Servidores</h3>
+                <div class="server-controls">
+                    <div class="server-control-item">
+                        <span>Sprint Unlock:</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="sprintToggle" onchange="toggleServerStatus('sprint')">
+                            <label for="sprintToggle" class="slider"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="server-control-item">
+                        <span>MTK/SPD Unlock:</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="mtkToggle" checked onchange="toggleServerStatus('mtk')">
+                            <label for="mtkToggle" class="slider"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="server-control-item">
+                        <span>Qualcomm Tool Server:</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="qualcommToggle" onchange="toggleServerStatus('qualcomm')">
+                            <label for="qualcommToggle" class="slider"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="server-control-item">
+                        <span>USA Carriers:</span>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="usaToggle" onchange="toggleServerStatus('usa')">
+                            <label for="usaToggle" class="slider"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contacto y Soporte</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>¿Necesitas ayuda?</h3>
+                    <p>Únete a nuestro grupo de soporte en Telegram para obtener asistencia inmediata</p>
+                    <a href="https://t.me/+yEktS0YdAhkzN2I5" target="_blank" class="telegram-btn">
+                        <i class="fab fa-telegram"></i> Unirse al Grupo de Soporte
+                    </a>
+                </div>
+                <div class="contact-image">
+                    <i class="fas fa-comments"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://i.postimg.cc/yx5gbVs1/Lucid-Realism-A-sleek-modern-logo-for-WLOCK-a-phone-unlocking-2.jpg" alt="WKLOCK-TOOL Logo" class="footer-logo-img">
+                    <span>WKLOCK-TOOL</span>
+                </div>
+                <div class="footer-text">
+                    <p>&copy; 2024 WKLOCK-TOOL. Todos los derechos reservados.</p>
+                    <p>Herramienta profesional para técnicos especializados</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Iniciar Sesión</h2>
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn-primary btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </button>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <p>¿No tienes cuenta? <a href="#" onclick="openRegisterModal()">Registrarse</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Registro</h2>
+                <span class="close" onclick="closeRegisterModal()">&times;</span>
+            </div>
+            <div class="register-content">
+                <p>Para registrarte y obtener acceso completo, únete a nuestro grupo de soporte en Telegram:</p>
+                <a href="https://t.me/+yEktS0YdAhkzN2I5" target="_blank" class="telegram-btn">
+                    <i class="fab fa-telegram"></i> Unirse al Grupo de Soporte
+                </a>
+                <p class="register-note">Nuestro equipo te ayudará con el proceso de registro</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        <div class="admin-header">
+            <h3><i class="fas fa-cog"></i> Panel de Administración</h3>
+            <button class="btn-secondary" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+        <div class="admin-content">
+            <div class="admin-section">
+                <h4>Configuración del Servidor</h4>
+                <div class="server-status-section">
+                    <h5>Estado de los Servidores</h5>
+                    <div class="server-status-grid">
+                        <div class="server-status-item">
+                            <span>Sprint Unlock:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="adminSprintToggle" onchange="toggleServerStatus('sprint')">
+                                <label for="adminSprintToggle" class="slider"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="server-status-item">
+                            <span>MTK/SPD Unlock:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="adminMtkToggle" checked onchange="toggleServerStatus('mtk')">
+                                <label for="adminMtkToggle" class="slider"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="server-status-item">
+                            <span>Qualcomm Tool Server:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="adminQualcommToggle" onchange="toggleServerStatus('qualcomm')">
+                                <label for="adminQualcommToggle" class="slider"></label>
+                            </div>
+                        </div>
+                        
+                        <div class="server-status-item">
+                            <span>USA Carriers:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="adminUsaToggle" onchange="toggleServerStatus('usa')">
+                                <label for="adminUsaToggle" class="slider"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nueva sección para administrar procesos de modelos -->
+            <div class="admin-section">
+                <h4>Administrar Procesos de Modelos</h4>
+                <div class="model-search-admin">
+                    <input type="text" id="adminModelSearch" placeholder="Buscar modelo..." onkeyup="filterAdminModels()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="bulk-actions">
+                    <h5>Acciones Masivas</h5>
+                    <div class="bulk-controls">
+                        <button class="btn-success" onclick="enableAllProcesses()">
+                            <i class="fas fa-check-double"></i> Habilitar Todo
+                        </button>
+                        <button class="btn-danger" onclick="disableAllProcesses()">
+                            <i class="fas fa-times"></i> Deshabilitar Todo
+                        </button>
+                        <button class="btn-primary" onclick="resetToDefaults()">
+                            <i class="fas fa-undo"></i> Restaurar Predeterminados
+                        </button>
+                    </div>
+                </div>
+                <div class="admin-models-list" id="adminModelsList">
+                    <!-- Models will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="admin-section">
+                <h4>Configuración del Sitio</h4>
+                <div class="config-item">
+                    <label for="siteTitle">Título del Sitio:</label>
+                    <input type="text" id="siteTitle" value="WKLOCK-TOOL">
+                </div>
+                <div class="config-item">
+                    <label for="maintenanceMode">Modo Mantenimiento:</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="maintenanceMode">
+                        <label for="maintenanceMode" class="slider"></label>
+                    </div>
+                </div>
+                <div class="config-item">
+                    <label for="supportEmail">Email de Soporte:</label>
+                    <input type="email" id="supportEmail" value="soporte@wklock.com">
+                </div>
+                <div class="config-item">
+                    <label for="telegramLink">Link de Telegram:</label>
+                    <input type="text" id="telegramLink" value="https://t.me/+yEktS0YdAhkzN2I5">
+                </div>
+                <button class="btn-primary" onclick="saveSettings()">
+                    <i class="fas fa-save"></i> Guardar Configuración
+                </button>
+            </div>
+            
+            <div class="admin-section">
+                <h4>Estadísticas</h4>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">128</span>
+                            <span class="stat-label">Usuarios</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-unlock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">1,542</span>
+                            <span class="stat-label">Desbloqueos</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">99.8%</span>
+                            <span class="stat-label">Uptime</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">5m</span>
+                            <span class="stat-label">Tiempo Medio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
