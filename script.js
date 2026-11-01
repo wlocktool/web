@@ -591,7 +591,7 @@ function showDownloadModal() {
     downloadModal = document.createElement("div")
     downloadModal.id = "downloadModal"
     downloadModal.className = "modal"
-    downloadModal.innerHTML = `<div class="modal-content"><div class="modal-header"><h2>${getText("downloadTool")}</h2><span class="close" onclick="closeDownloadModal()">&times;</span></div><div class="download-content"><p>${getText("selectDownloadOption")}</p><div class="download-buttons"><a href="https://mega.nz/folder/wwlWCKQA#gmE9wxUcMlTOkv0zfxkdzQ" target="_blank" class="download-btn mega-btn"><i class="fas fa-cloud-download-alt"></i> ${getText("downloadOption1")}</a><a href="https://www.mediafire.com/file/d7vbwmxf93yglqr/WLOCK-TOOL.rar/file" target="_blank" class="download-btn mediafire-btn"><i class="fas fa-download"></i> ${getText("downloadOption2")}</a></div><p class="download-note">${getText("downloadNote")}</p></div></div>`
+    downloadModal.innerHTML = `<div class="modal-content"><div class="modal-header"><h2>${getText("downloadTool")}</h2><span class="close" onclick="closeDownloadModal()">&times;</span></div><div class="download-content"><p>${getText("selectDownloadOption")}</p><div class="download-buttons"><a href="https://mega.nz/folder/wwlWCKQA#gmE9wxUcMlTOkv0zfxkdzQ" target="_blank" class="download-btn mega-btn"><i class="fas fa-cloud-download-alt"></i> ${getText("downloadOption1")}</a><a href="https://www.mediafire.com/file/6bsr75xdrlva4cs/WKLOCK-TOOL.zip" target="_blank" class="download-btn mediafire-btn"><i class="fas fa-download"></i> ${getText("downloadOption2")}</a></div><p class="download-note">${getText("downloadNote")}</p></div></div>`
     document.body.appendChild(downloadModal)
   }
   downloadModal.style.display = "block"
